@@ -47,6 +47,18 @@ func load_game():
 	
 	file.close()
 
+func save_game():
+	var file
+	
+	file = File.new()
+	
+	file.open(path, File.WRITE)
+	
+	file.store_line(to_json(data))
+	
+	file.close()
+
 func _ready():
 	randomize()
 	load_game()
+	save_game()
