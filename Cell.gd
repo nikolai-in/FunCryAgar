@@ -12,7 +12,7 @@ func _ready():
 		coin_type = 'ETH'
 	else:
 		coin_type = 'BTC'
-	coin_value = {'BTC': 1, 'DOGE': 0.001, "ETH": 0.1}[coin_type]
+	coin_value = {'BTC': 0.5, 'DOGE': 0.001, "ETH": 0.1}[coin_type]
 	scale *= coin_value + random_float * 2
 	$AnimatedSprite.animation = coin_type
 
