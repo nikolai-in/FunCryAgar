@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Cell.gd" type="Script" id=1]
+[ext_resource path="res://graphics/DOGE.png" type="Texture" id=2]
+[ext_resource path="res://graphics/BTC.png" type="Texture" id=3]
+[ext_resource path="res://graphics/ETH.png" type="Texture" id=4]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 3 ) ],
+"loop": false,
+"name": "BTC",
+"speed": 0.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": false,
+"name": "DOGE",
+"speed": 0.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": false,
+"name": "ETH",
+"speed": 0.0
+} ]
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 90.8098
+
+[node name="Cell" type="Area2D" groups=[
+"cells",
+]]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "BTC"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+
+[connection signal="body_entered" from="." to="." method="_on_Cell_body_entered"]

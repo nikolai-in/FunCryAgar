@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Main.gd" type="Script" id=1]
+[ext_resource path="res://Cell.tscn" type="PackedScene" id=2]
+[ext_resource path="res://graphics/Rectangle.png" type="Texture" id=3]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://HUD.tscn" type="PackedScene" id=5]
+
+[node name="Main" type="Node"]
+script = ExtResource( 1 )
+Cell = ExtResource( 2 )
+
+[node name="StartTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="GameOverTimer" type="Timer" parent="."]
+wait_time = 15.0
+one_shot = true
+
+[node name="StartPossition" type="Position2D" parent="."]
+position = Vector2( 5000, 5000 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_left = 0.03125
+anchor_top = 0.04
+anchor_right = 0.03125
+anchor_bottom = 0.04
+margin_right = 250.0
+margin_bottom = 250.0
+rect_scale = Vector2( 40, 40 )
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Player" parent="." instance=ExtResource( 4 )]
+position = Vector2( 5000, 5000 )
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+current = true
+zoom = Vector2( 3, 3 )
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+
+[node name="HUD" parent="." instance=ExtResource( 5 )]
+
+[connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]
+[connection signal="timeout" from="GameOverTimer" to="." method="_on_GameOverTimer_timeout"]
+[connection signal="start_game" from="HUD" to="." method="new_game"]
