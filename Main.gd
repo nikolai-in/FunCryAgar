@@ -21,7 +21,7 @@ func _process(_delta):
 	$HUD.update_time($GameOverTimer.get_time_left())
 	$HUD.update_score(Global.score)
 	if Global.score >= Global.data.options.score_max:
-		$GameOverTimer.stop()
+		Global.score = Global.data.options.score_max
 
 func _on_GameOverTimer_timeout():
 	if Global.score < Global.data.options.score_min:
