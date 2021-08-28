@@ -21,7 +21,7 @@ func show_game_over():
 	
 
 func update_time(time_left):
-	$Time.text = str(time_left)
+	$Time.text = str(int(time_left * 10))
 
 func update_score(_score):
 	$ScoreLabel.text = 'BTC: %s' % str(Global.score)
