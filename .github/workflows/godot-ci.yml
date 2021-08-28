@@ -111,3 +111,10 @@ jobs:
         with:
           name: mac
           path: build/mac
+      - name: Release 
+        uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: false
+          files: |
+            build/mac
