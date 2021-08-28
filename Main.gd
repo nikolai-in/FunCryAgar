@@ -2,11 +2,7 @@ extends Node
 
 
 export (PackedScene) var Cell
-export var cells = 200
 
-
-func _ready():
-	randomize()
 
 func game_over():
 	get_tree().call_group("cells", "queue_free")
@@ -24,13 +20,12 @@ func new_game():
 func _process(_delta):
 	$HUD.update_time($GameOverTimer.get_time_left())
 	$HUD.update_score(Global.score)
-	if Global.score >= 5:
-		get_tree().call_group("cells", "queue_free")
-
+	if Global.score >= Global.data.options.score_max:
+		$GameOverTimer.stop()
 
 func _on_GameOverTimer_timeout():
-	if Global.score < 0.5:
-		Global.score = 0.5
+	if Global.score < Global.data.options.score_min:
+		Global.score = Global.data.options.score_min
 	game_over()
 
 
@@ -41,7 +36,7 @@ func _on_StartTimer_timeout():
 	spawn_cells()
 
 func spawn_cells():
-	for _blob in range(cells):
+	for _blob in range(Global.data.options.coin_ammount):
 		var x = rand_range(0, 10000)
 		var y = rand_range(0, 10000)
 		var cell = Cell.instance()

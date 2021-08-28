@@ -2,6 +2,7 @@ extends CanvasLayer
 
 signal start_game
 
+
 func show_message(text, time = 2.0, color = Color("#ffffff")):
 	$Message.text = text
 	$Message.modulate = color
@@ -35,7 +36,7 @@ func _on_MessageTimer_timeout():
 
 func _on_LineEdit_text_entered(new_text):
 	var time = int(new_text)
-	if 15 <= time and time <= 40:
+	if Global.data.options.kWt_min <= time and time <= Global.data.options.kWt_max:
 		Global.time = time
 		$LineEdit.hide()
 		$LineEdit.clear()
