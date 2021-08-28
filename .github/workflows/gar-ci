@@ -1,4 +1,14 @@
-  release:
+name: Releasee
+
+
+on:
+  workflow_run:
+    workflows: ["godot-ci export"]
+    types:
+      - completed
+      
+jobs:
+   release:
     name: Release
     runs-on: ubuntu-latest
     steps:
