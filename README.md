@@ -27,13 +27,14 @@ Agar.io clone in Godot Engine for educational purposes
 ```
 только в одну строчку
 
-В Windows он находится в `%appdata\Godot\app_userdata\AgarEdu\data.json%`, а в Linux и macOS `~/Library/Application Support/Godot/app_userdata/AgarEdu/data.json` ~~или в `~/.local/share/godot/app_userdata/AgarEdu/data.json`~~
+В Windows он находится в `%appdata%\Godot\app_userdata\AgarEdu\data.json` ~~или в `%APPDATA%\AgarEdu\data.json`~~, а в Linux и macOS `~/Library/Application Support/Godot/app_userdata/AgarEdu/data.json` ~~или в `~/.local/share/godot/app_userdata/AgarEdu/data.json`~~
 
 ```json
 "coins": {
   "DOGE": 0.8,
   "ETH": 0.95
-}```
+}
+```
 шансы выпадения монет
 
 
