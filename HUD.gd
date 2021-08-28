@@ -2,17 +2,22 @@ extends CanvasLayer
 
 signal start_game
 
-func show_message(text):
+func show_message(text, time = 2.0, color = Color("#ffffff")):
 	$Message.text = text
-	$Message.show()
-	$MessageTimer.start()
+	$Message.modulate = color
+	$Message.show()	
+	$MessageTimer.start(time)
 
 func show_game_over():
 	$ScoreLabel.hide()
 	$Time.hide()
-	$FinalScore.text = 'BTC: %s' % str(Global.score)
-	$FinalScore.modulate = Color("#ff3838")
-	$FinalScore.show()
+	show_message('BTC: %s' % str(Global.score), 15,  Color("#ff3838"))
+	yield($MessageTimer, "timeout")
+	$Message.text = "Собери биткойны!"
+	$Message.show()
+	yield(get_tree().create_timer(1), "timeout")
+	$LineEdit.show()
+	
 
 func update_time(time_left):
 	$Time.text = str(time_left)
@@ -26,11 +31,12 @@ func _on_StartButton_pressed():
 
 func _on_MessageTimer_timeout():
 	$Message.hide()
-
+	$Message.modulate = Color("#ffffff")
 
 func _on_LineEdit_text_entered(new_text):
 	var time = int(new_text)
 	if 15 <= time and time <= 40:
 		Global.time = time
 		$LineEdit.hide()
+		$LineEdit.clear()
 		$StartButton.show()

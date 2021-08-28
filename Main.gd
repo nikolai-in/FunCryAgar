@@ -17,7 +17,7 @@ func new_game():
 	Global.score = 0
 	$HUD.update_score(Global.score)
 	$HUD.show_message("Приготовьтесь!")
-	$Player.start($StartPossition.position)
+	$Player.start($StartPossition.get_position())
 	$StartTimer.start()
 	
 
