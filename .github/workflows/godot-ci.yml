@@ -25,7 +25,7 @@ jobs:
           mkdir -v -p build/windows
           godot -v --export "Windows Desktop" ./build/windows/$EXPORT_NAME.exe
       - name: Upload Artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         with:
           name: windows
           path: build/windows
@@ -49,7 +49,7 @@ jobs:
           mkdir -v -p build/linux
           godot -v --export "Linux/X11" ./build/linux/$EXPORT_NAME.x86_64
       - name: Upload Artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         with:
           name: linux
           path: build/linux
@@ -73,7 +73,7 @@ jobs:
           mkdir -v -p build/web
           godot -v --export "HTML5" ./build/web/index.html
       - name: Upload Artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         with:
           name: web
           path: build/web
@@ -107,7 +107,26 @@ jobs:
           mkdir -v -p build/mac
           godot -v --export "Mac OSX" ./build/mac/$EXPORT_NAME.zip
       - name: Upload Artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         with:
           name: mac
           path: build/mac
+
+  release:
+    name: Release builds
+    needs: [export-windows, export-linux, export-mac]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download builds
+        uses: actions/download-artifact@v2
+
+      - name: Upload release
+        uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest"
+          title: "Automatic builds"
+          files:
+            mac
+            linux
+            windows
