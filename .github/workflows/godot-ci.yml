@@ -29,6 +29,16 @@ jobs:
         with:
           name: windows
           path: build/windows
+      - name: Release
+        uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest windows"
+          prerelease: false
+          title: "Automatic windows build"
+          files: |
+            build/windows
+      
 
   export-linux:
     name: Linux Export
@@ -53,6 +63,15 @@ jobs:
         with:
           name: linux
           path: build/linux
+      - name: Release
+        uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest linux"
+          prerelease: false
+          title: "Automatic linux build"
+          files: |
+            build/linux
 
   export-web:
     name: Web Export
@@ -110,21 +129,13 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: mac
-          path: build/mac
-          
-  release:
-    needs: [export-mac, export-linux, export-windows]
-    name: Release
-    runs-on: ubuntu-latest
-    steps:
+          path: build/mac 
       - name: Release
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "latest"
+          automatic_release_tag: "latest mac"
           prerelease: false
-          title: "Automatic Build"
+          title: "Automatic macOS build"
           files: |
-            build/windows
-            build/linux
             build/mac
