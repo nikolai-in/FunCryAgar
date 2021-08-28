@@ -94,7 +94,7 @@ custom_fonts/font = SubResource( 1 )
 align = 1
 context_menu_enabled = false
 virtual_keyboard_enabled = false
-placeholder_text = "Введите число КВ"
+placeholder_text = "Введите kWt"
 caret_blink = true
 __meta__ = {
 "_edit_use_anchors_": false
