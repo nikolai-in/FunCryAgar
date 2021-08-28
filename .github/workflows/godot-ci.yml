@@ -120,13 +120,12 @@ jobs:
       - name: Download builds
         uses: actions/download-artifact@v2
 
-      - name: Upload release
-        uses: "marvinpinto/action-automatic-releases@latest"
-        with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "latest"
-          title: "Automatic builds"
-          files: |
-            mac
-            linux
+      - name: Release
+        uses: fnkr/github-action-ghr@v1
+        env:
+          GHR_COMPRESS: zip
+          GHR_PATH: |
             windows
+            linux
+            mac
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
