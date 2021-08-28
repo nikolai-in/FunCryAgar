@@ -120,12 +120,17 @@ jobs:
       - name: Download builds
         uses: actions/download-artifact@v2
 
-      - name: Release
-        uses: fnkr/github-action-ghr@v1
-        env:
-          GHR_COMPRESS: zip
-          GHR_PATH: |
-            windows
-            linux
-            mac
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Compress
+        shell: bash
+        run: for build in {mac,linux,windows}; do zip -r $build $build; done
+
+      - name: upload
+        uses: marvinpinto/action-automatic-releases@latest
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest"
+          prerelease: false
+          files: |
+            linux.zip
+            mac.zip
+            windows.zip
