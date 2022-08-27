@@ -6,7 +6,8 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 54.0
 
-[node name="Coin" type="RigidBody2D"]
+[node name="Coin" type="RigidBody2D" groups=["coins"]]
+collision_mask = 0
 gravity_scale = 0.0
 script = ExtResource( 2 )
 __meta__ = {
