@@ -2,8 +2,11 @@ extends RigidBody2D
 
 
 export var speed = 1
+
 var world_scale = 3
 var screen_size : Vector2
+
+var score: float = 0
 
 
 func _ready() -> void:

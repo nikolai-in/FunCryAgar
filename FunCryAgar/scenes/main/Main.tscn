@@ -1,15 +1,30 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/main/Main.gd" type="Script" id=2]
 [ext_resource path="res://scenes/main/music.mp3" type="AudioStream" id=3]
-[ext_resource path="res://scenes/grid/Grid.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/grid/grid.png" type="Texture" id=4]
+[ext_resource path="res://scenes/coin/Coin.tscn" type="PackedScene" id=5]
 
 [node name="Main" type="Node"]
 script = ExtResource( 2 )
+coins = ExtResource( 5 )
 
-[node name="Grid" parent="." instance=ExtResource( 4 )]
-camera_path = NodePath("../Player/Camera2D")
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_left = -5760.0
+margin_top = -3240.0
+margin_right = -5040.0
+margin_bottom = -2835.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_scale = Vector2( 16, 16 )
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 2
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( 5760, 3240 )
+scale = Vector2( 16, 16 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 
@@ -35,3 +50,4 @@ stream = ExtResource( 3 )
 volume_db = -25.0
 
 [connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]
+[connection signal="timeout" from="GameTimer" to="." method="game_over"]
