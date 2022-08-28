@@ -19,7 +19,7 @@ func show_message(text: String):
 
 func show_game_over():
 	$VBoxContainer/TimeLabel.hide()
-	show_message("Game Over")
+	show_message("Good Job!")
 	# Wait until the MessageTimer has counted down.
 	yield($MessageTimer, "timeout")
 
@@ -36,7 +36,7 @@ func update_score(score: float):
 
 
 func update_time(time_left: float):
-	$VBoxContainer/TimeLabel.text = "Осталось времени:" + str(int(time_left * 10))
+	$VBoxContainer/TimeLabel.text = "Осталось времени: " + str(int(time_left * 10))
 
 
 func _on_StartButton_pressed() -> void:

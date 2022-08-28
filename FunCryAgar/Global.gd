@@ -19,7 +19,10 @@ var default_data = {
 		"kWt_max": 40,
 		"score_min": 0.5,
 		"score_max": 5,
-		"coin_ammount": 200
+		"coin_ammount": 500,
+		"game_scale" : 3,
+		"speed" : 1.0,
+		"music" : true
 	}
 }
 

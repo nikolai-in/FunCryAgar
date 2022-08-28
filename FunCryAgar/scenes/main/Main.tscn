@@ -53,7 +53,8 @@ wait_time = 0.1
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
-volume_db = -25.0
+volume_db = -40.0
+autoplay = true
 
 [connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]
 [connection signal="timeout" from="GameTimer" to="." method="game_over"]
