@@ -1,6 +1,8 @@
 name: "godot-ci export"
 on:
-  tag
+  push:
+    tags:
+      - '*'
 
 env:
   GODOT_VERSION: 3.5
