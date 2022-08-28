@@ -19,11 +19,17 @@ func _ready() -> void:
 		add_child(coin)
 
 
+func time_update() -> void:
+	$HUD.update_time($GameTimer.time_left)
+	
+
+
 func game_over() -> void:
 	$Player.stop()
 	get_tree().call_group("coins", "queue_free")
 	$Music.stop()
 	$HUD.show_game_over()
+	$UpdateTimer.stop()
 
 
 func new_game() -> void:
@@ -39,3 +45,4 @@ func _on_StartTimer_timeout() -> void:
 	get_tree().call_group("coins", "show")
 	$GameTimer.wait_time = $HUD.time
 	$GameTimer.start()
+	$UpdateTimer.start()

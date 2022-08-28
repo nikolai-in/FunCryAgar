@@ -44,6 +44,9 @@ __meta__ = {
 wait_time = 30.0
 one_shot = true
 
+[node name="UpdateTimer" type="Timer" parent="."]
+wait_time = 0.1
+
 [node name="StartPosition" type="Position2D" parent="."]
 
 [node name="HUD" parent="." instance=ExtResource( 6 )]
@@ -54,4 +57,5 @@ volume_db = -25.0
 
 [connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]
 [connection signal="timeout" from="GameTimer" to="." method="game_over"]
+[connection signal="timeout" from="UpdateTimer" to="." method="time_update"]
 [connection signal="start_game" from="HUD" to="." method="new_game"]
