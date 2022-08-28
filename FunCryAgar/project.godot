@@ -43,6 +43,7 @@ debug=false
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
+theme/custom_font="res://scenes/hud/font.tres"
 
 [physics]
 

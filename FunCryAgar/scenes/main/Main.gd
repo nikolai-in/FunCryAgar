@@ -17,10 +17,10 @@ func _ready() -> void:
 		coin.position = coin_location
 		
 		add_child(coin)
-	new_game()
 
 
 func game_over() -> void:
+	game_over()
 	get_tree().call_group("coins", "queue_free")
 	$Music.stop()
 
@@ -30,10 +30,11 @@ func new_game() -> void:
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
 	# $HUD.update_score(score)
-	# $HUD.show_message("Get Ready")
+	$HUD.show_message("Приготовьтесь!")
 	
 	$Music.play()
 
 func _on_StartTimer_timeout() -> void:
 	get_tree().call_group("coins", "show")
+	$GameTimer.wait_time = $HUD.time
 	$GameTimer.start()

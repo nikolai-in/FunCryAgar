@@ -19,3 +19,4 @@ texture = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+scale = Vector2( 6.7, 6.7 )

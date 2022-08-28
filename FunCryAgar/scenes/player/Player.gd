@@ -1,4 +1,4 @@
-extends RigidBody2D
+extends Area2D
 
 
 export var speed = 1
@@ -39,5 +39,6 @@ func stop() -> void:
 	$CollisionShape2D.set_deferred("disabled",true)
 
 
-func _on_Player_body_entered(body: Node) -> void:
-	print(body.name)
+func _on_Player_area_entered(area: Area2D) -> void:
+	print(area)
+	area.queue_free()
