@@ -41,7 +41,7 @@ __meta__ = {
 }
 
 [node name="GameTimer" type="Timer" parent="."]
-wait_time = 30.0
+wait_time = 15.0
 one_shot = true
 
 [node name="UpdateTimer" type="Timer" parent="."]

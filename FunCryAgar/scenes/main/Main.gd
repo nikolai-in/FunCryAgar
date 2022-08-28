@@ -1,12 +1,16 @@
 extends Node
 
 
-export(int) var coins_ammount = 500
+var coins_ammount = 500
 export(PackedScene) var coins
 
 
 func _ready() -> void:
+	print(Global.data.options.coin_ammount)
 	randomize()
+	spawn_coins()
+
+func spawn_coins() -> void:
 	var rng = RandomNumberGenerator.new()
 	for i in range(coins_ammount):
 		var coin : Area2D = coins.instance()
@@ -21,7 +25,8 @@ func _ready() -> void:
 
 func time_update() -> void:
 	$HUD.update_time($GameTimer.time_left)
-	
+	# bad stuff is below
+	$HUD.update_score($Player.score)
 
 
 func game_over() -> void:
@@ -30,6 +35,7 @@ func game_over() -> void:
 	$Music.stop()
 	$HUD.show_game_over()
 	$UpdateTimer.stop()
+	spawn_coins()
 
 
 func new_game() -> void:

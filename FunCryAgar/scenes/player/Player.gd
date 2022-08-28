@@ -35,10 +35,15 @@ func start(pos: Vector2):
 
 
 func stop() -> void:
+	if score < Global.data.options.score_min:
+		score = Global.data.options.score_max
 	hide()
 	$CollisionShape2D.set_deferred("disabled",true)
 
 
-func _on_Player_area_entered(area: Area2D) -> void:
-	print(area)
-	area.queue_free()
+func _on_Player_area_entered(coin: Area2D) -> void:
+	if score + coin.coin_value < Global.data.options.score_max:
+		score += coin.coin_value 
+	else:
+		score =Global.data.options.score_max
+	coin.queue_free()
