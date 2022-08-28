@@ -18,7 +18,7 @@ func _ready() -> void:
 
 func spawn_coins() -> void:
 	var rng = RandomNumberGenerator.new()
-	for i in range(coins_ammount):
+	for _i in range(coins_ammount):
 		var coin : Area2D = coins.instance()
 		
 		var coin_location : Vector2 = Vector2(rng.randi_range(-1920*game_scale, 1920*game_scale),

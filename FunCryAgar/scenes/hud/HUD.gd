@@ -9,6 +9,8 @@ func _ready() -> void:
 	time = Global.data.options.kWt_min
 	$HSlider.min_value = Global.data.options.kWt_min
 	$HSlider.max_value = Global.data.options.kWt_max
+	
+	$LineEdit.placeholder_text = "Введите kWt от " + str(Global.data.options.kWt_min) + " до " + str(Global.data.options.kWt_max)
 
 
 func show_message(text: String):
@@ -27,8 +29,9 @@ func show_game_over():
 	$Message.show()
 	# Make a one-shot timer and wait for it to finish.
 	yield(get_tree().create_timer(1), "timeout")
-	$HSlider.show()
-	$StartButton.show()
+	# $HSlider.show()
+	$LineEdit.show()
+	# $StartButton.show()
 	$ExitButton.show()
 
 func update_score(score: float):
@@ -59,3 +62,17 @@ func _on_MessageTimer_timeout() -> void:
 
 func _on_Exit_pressed() -> void:
 	get_tree().quit()
+
+
+func _on_LineEdit_text_entered(new_text: String) -> void:
+	time = int(new_text)
+	if Global.data.options.kWt_min <= time and time <= Global.data.options.kWt_max:
+		Global.time = time
+		$LineEdit.hide()
+		$LineEdit.clear()
+		$StartButton.show()
+
+
+func _on_LineEdit_visibility_changed() -> void:
+	if $LineEdit.visible:
+		$LineEdit.grab_focus()
