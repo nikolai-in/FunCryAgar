@@ -2,7 +2,7 @@ extends CanvasLayer
 signal start_game
 
 
-export var time: float = 30
+export var time: float = 1
 
 
 func show_message(text):
@@ -17,10 +17,10 @@ func show_game_over():
 	yield($MessageTimer, "timeout")
 
 	$Message.text = "Собери биткоины!"
-	$HSlider.show()
 	$Message.show()
 	# Make a one-shot timer and wait for it to finish.
-	yield(get_tree().create_timer(4), "timeout")
+	yield(get_tree().create_timer(1), "timeout")
+	$HSlider.show()
 	$StartButton.show()
 
 func update_score(score: int):

@@ -1,7 +1,7 @@
 extends Node
 
 
-export(int) var coins_ammount = 1000
+export(int) var coins_ammount = 500
 export(PackedScene) var coins
 
 
@@ -20,9 +20,10 @@ func _ready() -> void:
 
 
 func game_over() -> void:
-	game_over()
+	$Player.stop()
 	get_tree().call_group("coins", "queue_free")
 	$Music.stop()
+	$HUD.show_game_over()
 
 
 func new_game() -> void:
