@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/hud/HUD.gd" type="Script" id=1]
 [ext_resource path="res://scenes/hud/kenneyUI.tres" type="Theme" id=2]
@@ -9,6 +9,12 @@
 [sub_resource type="DynamicFont" id=1]
 size = 64
 font_data = ExtResource( 3 )
+
+[sub_resource type="InputEventAction" id=3]
+action = "start_game"
+
+[sub_resource type="ShortCut" id=4]
+shortcut = SubResource( 3 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 64
@@ -61,21 +67,8 @@ margin_right = 128.5
 margin_bottom = -80.0
 theme = ExtResource( 2 )
 custom_fonts/font = SubResource( 1 )
+shortcut = SubResource( 4 )
 text = "Начать!"
-
-[node name="HSlider" type="HSlider" parent="."]
-visible = false
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -340.0
-margin_top = -285.0
-margin_right = 340.0
-margin_bottom = -253.0
-theme = ExtResource( 2 )
-min_value = 15.0
-value = 15.0
 
 [node name="ExitButton" type="Button" parent="."]
 margin_right = 12.0
@@ -102,7 +95,6 @@ wait_time = 2.0
 one_shot = true
 
 [connection signal="pressed" from="StartButton" to="." method="_on_StartButton_pressed"]
-[connection signal="value_changed" from="HSlider" to="." method="_on_HSlider_value_changed"]
 [connection signal="pressed" from="ExitButton" to="." method="_on_Exit_pressed"]
 [connection signal="text_entered" from="LineEdit" to="." method="_on_LineEdit_text_entered"]
 [connection signal="visibility_changed" from="LineEdit" to="." method="_on_LineEdit_visibility_changed"]

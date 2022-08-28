@@ -7,8 +7,6 @@ var time: float
 
 func _ready() -> void:
 	time = Global.data.options.kWt_min
-	$HSlider.min_value = Global.data.options.kWt_min
-	$HSlider.max_value = Global.data.options.kWt_max
 	
 	$LineEdit.placeholder_text = "Введите kWt от " + str(Global.data.options.kWt_min) + " до " + str(Global.data.options.kWt_max)
 
@@ -22,16 +20,12 @@ func show_message(text: String):
 func show_game_over():
 	$VBoxContainer/TimeLabel.hide()
 	show_message("Good Job!")
-	# Wait until the MessageTimer has counted down.
 	yield($MessageTimer, "timeout")
 
 	$Message.text = "Собери Биткоины!"
 	$Message.show()
-	# Make a one-shot timer and wait for it to finish.
 	yield(get_tree().create_timer(1), "timeout")
-	# $HSlider.show()
 	$LineEdit.show()
-	# $StartButton.show()
 	$ExitButton.show()
 
 func update_score(score: float):
@@ -50,14 +44,8 @@ func _on_StartButton_pressed() -> void:
 	emit_signal("start_game")
 
 
-func _on_HSlider_value_changed(value: float) -> void:
-	$Message.text = "Собери Биткоины!\n" + str(value) + " kWt"
-	time = value
-
-
 func _on_MessageTimer_timeout() -> void:
 	$Message.hide()
-	$HSlider.hide()
 
 
 func _on_Exit_pressed() -> void:
